@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<title>Product Manager</title>
+<link rel="stylesheet" 
+          href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+</head>
+<body>
+	<div align="center" style="padding: 20px 20px 20px;">
+		<a href="/">Regresar</a>
+		<h1>Editar Producto</h1>
+		<br />
+		<form action="#" th:action="@{/save}" th:object="${product}"
+			method="post">
+
+			<table border="0" cellpadding="10" class="table">
+				<tr>				
+					<td>ID Producto:</td>
+					<td>
+						<input type="text" th:field="*{id}" readonly="readonly" />
+					</td>
+				</tr>			
+				<tr>				
+					<td>Nombre del producto:</td>
+					<td>
+						<input type="text" th:field="*{nombre}" />
+					</td>
+				</tr>
+				<tr>
+					<td>Marca:</td>
+					<td><input type="text" th:field="*{marca}" /></td>
+				</tr>
+				<tr>
+					<td>Hecho En:</td>
+					<td><input type="text" th:field="*{elaborado}" /></td>
+				</tr>
+				<tr>
+					<td>Precio:</td>
+					<td><input type="text" th:field="*{precio}" /></td>
+				</tr>								
+				<tr>
+					<td colspan="2"><button type="submit">Guardar</button> </td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<title>Product Manager</title>
+<link rel="stylesheet" 
+          href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+ <style>
+ 	#myInput {
+	  background-image: url('/css/searchicon.png');
+	  background-position: 10px 10px;
+	  background-repeat: no-repeat;
+	  width: 100%;
+	  font-size: 16px;
+	  padding: 12px 20px 12px 40px;
+	  border: 1px solid #ddd;
+	  margin-bottom: 12px;
+	}
+	
+	th{cursor:pointer;}
+ </style>
+</head>
+<body>
+<div align="center" style="padding: 20px 20px 20px;">
+    <h1>[[#{app.title}]]</h1>
+    <button type="button" class="btn btn-primary"><a href="new" style="color: white">Crear Nuevo Producto</a></button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary"><a href="buscar" style="color: white">Buscar Producto Por Marca</a></button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary"><a href="buscarPorPrecio" style="color: white">Buscar Producto Por Precios Mayores</a></button>
+    <br/><br/>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar por nombre.." title="Type in a name">
+    <table border="1" cellpadding="10" class="table" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col" onclick="sortBy(0)">[[#{table.id}]]</th>
+                <th scope="col" onclick="sortBy(1)">[[#{table.name}]]</th>
+                <th scope="col" onclick="sortBy(2)">[[#{table.brand}]]</th>
+                <th scope="col" onclick="sortBy(3)">[[#{table.madein}]]</th>
+                <th scope="col" onclick="sortBy(4)">[[#{table.price}]]</th>
+                <th scope="col">[[#{table.actions}]]</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="producto : ${listaProductos}">
+            	<td th:text="${producto.id}" scope="row">[[#{table.id}]]</td>
+                <td th:text="${producto.nombre}">[[#{table.name}]]</td>
+                <td th:text="${producto.marca}">[[#{table.brand}]]</td>
+                <td th:text="${producto.elaborado}">[[#{table.madein}]]</td>
+                <td th:text="${producto.precio}">[[#{table.price}]]</td>
+                 <td>
+                	<a th:href="@{'/edit/' + ${producto.id}}">[[#{table.edit}]]</a>
+                	&nbsp;&nbsp;&nbsp;
+                	<a th:href="@{'/delete/' + ${producto.id}}">[[#{table.delete}]]</a>
+                </td> 
+            </tr>
+        </tbody>
+    </table>
+</div>   
+<script type="text/javascript" th:src="@{js/create_url.js}"></script> 
+</body>
+</html>
