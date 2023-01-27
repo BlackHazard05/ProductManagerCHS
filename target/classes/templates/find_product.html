@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<title>Product Manager</title>
+<link rel="stylesheet" 
+          href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+</head>
+<body>
+<div align="center" style="padding: 20px 20px 20px;">
+	<a href="/">Regresar</a>
+    <h1>Buscar Producto Por Marca</h1>
+    </br>
+    <input type="text" placeholder="Marca " id="marca" class="inputClass">
+	<button type="button" onclick="buscarMarca();" class="btn btn-primary">Buscar</button>
+    <table border="1" cellpadding="10" class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID Producto</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Hecho En</th>
+                <th scope="col">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="producto : ${productos}">
+            	<td th:text="${producto.id}">ID Producto</td>
+                <td th:text="${producto.nombre}">Nombre</td>
+                <td th:text="${producto.marca}">Marca</td>
+                <td th:text="${producto.elaborado}">Hecho En</td>
+                <td th:text="${producto.precio}">Precio</td>
+            </tr>
+        </tbody>
+    </table>
+</div> 
+<script type="text/javascript" th:src="@{js/create_url.js}"></script>
+</body>
+</html>
